@@ -35,5 +35,27 @@
             </div>
         </div>
 
+        <script>
+
+            const apiKey = "1fba3fd9cc796e7e32d129d09a768cad";
+            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=kakinada";
+
+            async function checkWeather(){
+                const response = await fetch(apiUrl + `&appid=${apiKey}`);
+                var data = await response.json();
+
+                console.log(data);
+
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp)  + "°C";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+            }
+
+
+            checkWeather();
+        </script>
+
+
     </body>
 </html>
